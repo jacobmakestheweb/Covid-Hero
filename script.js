@@ -11,7 +11,7 @@ class mainScene
       {
         // INIT SPRITES
         this.load.image('store', 'https://cdn.glitch.com/4c491429-c9d4-4b86-b1cd-8c2836ece7fc%2Fdastore.jpg?v=1593062087265');
-        this.load.image('player','phasertutuno/covidhero.png ');
+        this.load.image('player', 'https://cdn.glitch.com/4c491429-c9d4-4b86-b1cd-8c2836ece7fc%2Fcovidhero.png?v=1593062046018');
         this.load.image('covid','https://cdn.glitch.com/4c491429-c9d4-4b86-b1cd-8c2836ece7fc%2FCOVID.png?v=1593062025204');
         this.load.image('coin', 'https://cdn.glitch.com/4c491429-c9d4-4b86-b1cd-8c2836ece7fc%2FTP.png?v=1593062067938');
       };
