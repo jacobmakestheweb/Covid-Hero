@@ -9,10 +9,11 @@ var rightKey;
 var upKey;
 var downKey;
 
-
 class mainScene {
 
       preload () {
+       // INIT SOUNDS  
+        this.load.audio('levelmusic', 'assets/covidherolevelFINAL.wav')
        // INIT SPRITES
         this.load.image('store', 'assets/grocerybg.png');
         this.load.spritesheet('player', 'assets/covid-hero.png', {
@@ -60,13 +61,18 @@ class mainScene {
           frames: this.anims.generateFrameNumbers("player", {start: 6, end: 11}),
           repeat: -1
         });
-       // COVID ANIMS
+       // COVID ANIM
         this.anims.create({
           key: "blink",
           frameRate: 4,
           frames: this.anims.generateFrameNumbers("covid", {start: 0 , end: 3}),
           repeat: -1
         });
+
+       // INIT SOUNDS
+      let levelMusic = this.sound.add('levelmusic',0.5, true)
+      levelMusic.setLoop(true);
+      levelMusic.play();
 
        // CREATE SPRITES 
        player = this.player = this.physics.add.sprite(100,100, 'player');
@@ -77,7 +83,6 @@ class mainScene {
        this.score = 0;
        let style = { font: '20px Arial', fill: '#fff' };
        this.scoreText = this.add.text(20, 20, 'score: ' + this.score, style);
-       // INIT KB ARROW CONTROLS
        // COVID KILL
        covids = this.physics.add.group();
        this.physics.add.collider(player, covids, hitCovid, null, this);
@@ -90,7 +95,6 @@ class mainScene {
        downKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
       };
 
-
       update() {
         this.moveCovids()
         //CALL COLLISION LOGIC
@@ -100,6 +104,7 @@ class mainScene {
         if (this.physics.overlap(this.player, this.covid)) {
           this.hitCovid();
         }
+
         // CONTROLS
           if(keyInputs.left.isDown){
              player.x = player.x - 4;
@@ -142,6 +147,7 @@ class mainScene {
       moveCovids() {  
         var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
       }; 
+
       // COLLECT LOGIC
       hit() {
         this.coin.x = Phaser.Math.Between(100, 600);
@@ -165,7 +171,7 @@ class mainScene {
             yoyo: true,
           });
       }; 
-};
+    };
 
     var hitCovid = function() {
       this.physics.pause();
